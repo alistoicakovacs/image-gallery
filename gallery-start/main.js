@@ -21,21 +21,31 @@ function thumbBarImages(arr) {
 	}
 
 	const currentSrcValue = document.querySelector("img");
-
-	thumbBar.addEventListener("click", function () {
-		for (i = 0; i < thumbBar.length; i++) {
-			this.getAttribute("src");
-			console.log(this);
-		}
-	});
 }
 thumbBarImages(imagesArray);
 
 // Display the clicked picture in the displayed image div
 
-// imagesArray.addEventListener("click", function () {});
+thumbBar.addEventListener("click", function () {
+	// Find the source of the clicked image
+	const imgSource = event.target.src;
 
+	//Change the displayed image src to the clicked image source
+	displayedImage.src = imgSource;
+});
+
+// Adding functionality to the Darken button
 /* Wiring up the Darken/Lighten button */
 btn.addEventListener("click", function () {
-	displayedImage.classList.add("overlay");
+	const btnAttribute = btn.getAttribute("class");
+	console.log(btnAttribute);
+	if (btnAttribute == "dark") {
+		btn.setAttribute("class", "light");
+		btn.textContent = "Lighten";
+		overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+	} else {
+		btn.setAttribute("class", "dark");
+		btn.textContent = "Darken";
+		overlay.style.backgroundColor = "rgba(0,0,0,0.0)";
+	}
 });
